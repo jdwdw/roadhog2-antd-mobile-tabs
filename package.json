@@ -5,8 +5,6 @@
     "build": "roadhog build && gulp minify-css",
     "build:prod": "cross-env ENV=prod npm run build",
     "build:sx": "cross-env ENV=sx npm run build",
-    "lint": "eslint --ext .js src test",
-    "precommit": "pretty-quick --staged && npm run lint",
     "format": "prettier --write '{{src,test}/**/*.{js,jsx,css,less},*.js}'"
   },
   "dependencies": {
