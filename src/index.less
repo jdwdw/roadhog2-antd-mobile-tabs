@@ -1,0 +1,181 @@
+@theme: './theme';
+@import (reference) '@{theme}/var';
+
+// 变量
+@width: 213px, 320px, 360px, 375px, 384px, 400px, 414px, 424px, 480px, 540px, 600px, 640px, 720px,
+  768px, 800px, 854px, 960px, 966px, 1024px, 1080px, 1280px, 1440px, 1536px, 1920px, 2560px;
+// mixin
+.generate-media-query(@size, @i: 1) when (@i =< length(@size)) {
+  html {
+    @media screen and (min-width: extract(@size, @i)) {
+      // root element size
+      font-size: extract(@size, @i) * 100px / 375px;
+    }
+  }
+  .generate-media-query(@size, (@i + 1));
+}
+
+//roadhogrc2打包会bar会出现bug的兼容 （https://github.com/ant-design/ant-design-mobile/issues/2015）
+// :global {
+//   .am-tabs {
+//     display: inherit !important;
+//   }
+// }
+
+:global {
+  a {
+    color: inherit;
+  }
+  ::-webkit-scrollbar {
+    display: none;
+  }
+  .fn-clear {
+    *zoom: 1;
+  }
+  .fn-clear:before,
+  .fn-clear:after {
+    content: '';
+    display: table;
+  }
+  .fn-clear:after {
+    clear: both;
+  }
+  .fn-left {
+    float: left;
+  }
+  .fn-right {
+    float: right;
+  }
+  .fn-hide {
+    display: none;
+  }
+  .fn-show {
+    display: block;
+  }
+  .text-left {
+    text-align: left;
+  }
+  .text-center {
+    text-align: center;
+  }
+  .text-right {
+    text-align: right;
+  }
+  *,
+  :after,
+  :before {
+    -webkit-box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    -ms-box-sizing: border-box;
+    -o-box-sizing: border-box;
+    box-sizing: border-box;
+    -webkit-tap-highlight-color: transparent;
+    tap-highlight-color: transparent;
+  }
+  .no-select {
+    -ms-user-select: none;
+    -moz-user-select: none;
+    -webkit-user-select: none;
+    user-select: none;
+  }
+  .no-appear {
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    -ms-appearance: none;
+    -o-appearance: none;
+    appearance: none;
+  }
+  .no-wrap {
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+  }
+  body {
+    font-family: -apple-system, BlinkMacSystemFont, 'PingFangSC-Regular', 'Helvetica Neue', 'Arial',
+      'PingFang SC', 'Hiragino Sans GB', 'STHeiti', 'Microsoft YaHei', 'Microsoft JhengHei',
+      'Source Han Sans SC', 'Noto Sans CJK SC', 'Source Han Sans CN', 'Noto Sans SC',
+      'Source Han Sans TC', 'Noto Sans CJK TC', 'WenQuanYi Micro Hei', SimSun, sans-serif;
+    :global {
+      .am-activity-indicator.am-activity-indicator-toast {
+        background: white;
+      }
+    }
+  }
+  #root,
+  body,
+  html {
+    width: 100%;
+    height: 100%;
+    margin: 0;
+    padding: 0;
+    -webkit-text-size-adjust: none;
+    font-size: 0.14rem;
+  }
+  .generate-media-query(@width);
+  .react_star {
+    margin-top: -0.02rem;
+    margin-left: 0.1rem;
+    font-size: 0.18rem;
+    direction: rtl;
+    .star {
+      margin: 0 0.05rem;
+      color: #ddd;
+      cursor: pointer;
+      transition: color 0.3s;
+      &:hover,
+      &:hover ~ .star,
+      &.active,
+      &.active ~ .star {
+        color: orange;
+      }
+    }
+  }
+}
+
+:global {
+  // reset antd-mobile default style
+  .am-modal-wrap {
+    z-index: 10000;
+  }
+  .am-modal-title {
+    font-size: 0.14rem;
+  }
+  .am-modal-alert-content {
+    font-size: 0.12rem;
+    color: #666;
+  }
+  .am-modal-button-group-h .am-modal-button {
+    font-size: 0.16rem;
+    color: @primary-color;
+    height: 0.4rem;
+    line-height: 0.4rem;
+  }
+  .am-modal-button-group-h .am-modal-button:first-child {
+    color: @t-sub-color;
+  }
+  .am-modal-button-group-h .am-modal-button {
+    color: @primary-color;
+  }
+  .am-modal-button-group-h .am-modal-button:first-child {
+    order: 2;
+  }
+  .am-modal-button-group-h {
+    border-top: 1px solid @bd-color;
+  }
+  .am-modal-button-group-h .am-modal-button:last-child {
+    border: none;
+    border-right: 1px solid @bd-color;
+  }
+}
+
+:global {
+  #root {
+    .am-tabs-default-bar-top .am-tabs-default-bar-tab {
+      border-bottom: 1px solid @bd-color;
+      font-size: 0.14rem;
+      color: #666;
+      height: 0.36rem;
+      line-height: 0.36rem;
+    }
+  }
+}
